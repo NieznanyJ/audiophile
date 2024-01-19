@@ -1,0 +1,119 @@
+.cart {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  min-height: 300px;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  background-color: var(--white);
+  border-radius: 10px;
+  z-index: 100;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+@media screen and (min-width: 768px) {
+  .cart {
+    left: 70%;
+    top: 12%;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .cart {
+    left: 70%;
+    top: 12%;
+  }
+}
+.cart .cart-empty {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.cart .cart-empty p {
+  width: 100%;
+}
+.cart .cart-item-wrapper {
+  overflow-y: scroll;
+  max-height: 250px;
+}
+.cart .cart-item-wrapper::-webkit-scrollbar {
+  width: 5px;
+}
+.cart .cart-item-wrapper::-webkit-scrollbar-track {
+  width: 5px !important;
+}
+.cart div:first-child {
+  display: flex;
+  justify-content: space-between;
+}
+.cart div:first-child span {
+  text-transform: capitalize;
+  cursor: pointer;
+}
+.cart div:first-child span:hover {
+  color: var(--main-orange);
+  transition: all 0.3s ease;
+}
+.cart div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.cart div:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: stretch;
+  gap: 1em;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+}
+.cart-item .cart-item-info {
+  display: flex;
+}
+.cart-item img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  max-width: 80px;
+}
+.cart-item div:last-child {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  gap: 0;
+}
+.cart-item div:last-child .add-to-cart {
+  flex-direction: row;
+  width: 100px;
+  height: 40px;
+  justify-content: space-between;
+  background-color: #F1F1F1;
+}
+.cart-item div:last-child .add-to-cart span {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cart-item div:last-child .add-to-cart span:hover:not(span:nth-child(2)) {
+  cursor: pointer;
+  background-color: var(--main-orange);
+  color: var(--white);
+}/*# sourceMappingURL=cart.css.map */

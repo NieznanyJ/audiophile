@@ -1,0 +1,92 @@
+.navbar{
+    position: sticky;
+    top: 0;
+    background-color: var(--main-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2em 2em;
+    z-index: 100;
+    max-height: var(--navbar-height);
+
+    @media screen and (min-width: 1440px) {
+        padding-left: 18.5%;
+        padding-right: 18.5%;
+
+        
+        
+    }
+}
+
+.navbar::after{
+    content: '';
+    background-color: var(--white);
+    width: 90%;
+    height: .5px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: .5px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @media screen and (min-width:1440px) {
+        width: 63%;
+        
+    }
+}
+
+
+
+.navbar-links{
+    list-style: none;
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-link{
+    color: var(--white) ;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.nav-link:hover{
+    color: var(--main-orange) !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.cart-icon{
+    cursor: pointer;
+}
+
+
+.moblie-nav-icon{
+    cursor: pointer;
+}
+
+
+.navbar-cart{
+    position: relative;
+
+    &:hover{
+        transform: scale(1.05);
+        transition: all 0.3s ease-out;
+    }
+
+    .cart-indicator{
+        background-color: var(--main-orange);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 15px;
+        height: 15px;
+        font-size: .75em;
+        border-radius: 50%;
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        cursor: pointer;
+    }
+}
