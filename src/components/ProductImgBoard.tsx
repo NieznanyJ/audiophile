@@ -1,39 +1,76 @@
 import { useEffect, useState } from "react";
 import { DataType } from "./dataType";
 
-type galleryType = {
-    mobile: string;
-    tablet: string;
-    desktop: string;
-};
+
 
 function ProductImgBoard({ product }: { product: DataType }) {
-    const [imageSrcs, setImageSrcs] = useState<string[]>([]);
+    const [imageSrcs, setImageSrcs] = useState<string[] | null>(null);
+    const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+
+    function loadImages() {
+        import("../components/modules/images.js").then(
+            ({ IMAGES: imageSrcs }) => {
+                if (product.name.includes("XX99 Mark I ")) {
+                    screenWidth < 768 && screenWidth < 1440
+                        ? setImageSrcs(imageSrcs.xx99M1.mobile.gallery)
+                        : screenWidth >= 768 && screenWidth < 1440
+                        ? setImageSrcs(imageSrcs.xx99M1.tablet.gallery)
+                        : setImageSrcs(imageSrcs.xx99M1.desktop.gallery);
+                } else if (product.name.includes("XX99 Mark II")) {
+                    screenWidth < 768 && screenWidth < 1440
+                        ? setImageSrcs(imageSrcs.xx99m2.mobile.gallery)
+                        : screenWidth >= 768 && screenWidth < 1440
+                        ? setImageSrcs(imageSrcs.xx99m2.tablet.gallery)
+                        : setImageSrcs(imageSrcs.xx99m2.desktop.gallery);
+                } else if (product.name.includes("XX59")) {
+                    screenWidth < 768 && screenWidth < 1440
+                        ? setImageSrcs(imageSrcs.xx59.mobile.gallery)
+                        : screenWidth >= 768 && screenWidth < 1440
+                        ? setImageSrcs(imageSrcs.xx59.tablet.gallery)
+                        : setImageSrcs(imageSrcs.xx59.desktop.gallery);
+                } else if (product.name.includes("ZX9")) {
+                    screenWidth < 768 && screenWidth < 1440
+                        ? setImageSrcs(imageSrcs.zx9.mobile.gallery)
+                        : screenWidth >= 768 && screenWidth < 1440
+                        ? setImageSrcs(imageSrcs.zx9.tablet.gallery)
+                        : setImageSrcs(imageSrcs.zx9.desktop.gallery);
+                } else if (product.name.includes("ZX7")) {
+                    screenWidth < 768 && screenWidth < 1440
+                        ? setImageSrcs(imageSrcs.zx7.mobile.gallery)
+                        : screenWidth >= 768 && screenWidth < 1440
+                        ? setImageSrcs(imageSrcs.zx7.tablet.gallery)
+                        : setImageSrcs(imageSrcs.zx7.desktop.gallery);
+                } else if (product.name.includes("YX1")) {
+                    screenWidth < 768 && screenWidth < 1440
+                        ? setImageSrcs(imageSrcs.yx1.mobile.gallery)
+                        : screenWidth >= 768 && screenWidth < 1440
+                        ? setImageSrcs(imageSrcs.yx1.tablet.gallery)
+                        : setImageSrcs(imageSrcs.yx1.desktop.gallery);
+                }
+            }
+        );
+        console.log(imageSrcs);
+    }
 
     useEffect(() => {
-        const loadImages = async () => {
-            const srcs = await Promise.all(
-                Object.values(product.gallery).map(
-                    async (item: galleryType) => {
-                        try {
-                            const module = await import(`.${item.mobile}`);
-                            return module.default;
-                        } catch (error) {
-                            console.error("Error loading image:", error);
-                            return null;
-                        }
-                    }
-                )
-            );
+        loadImages();
+    }, [product, screenWidth]);
 
-            setImageSrcs(srcs.filter((src) => src !== null));
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth);
         };
 
-        loadImages();
-    }, [product]);
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
     return (
         <div className="product-image-board">
             {imageSrcs.map((src, index) => (
+                console.log(src),
                 <img key={index} src={src} alt={product.name} />
             ))}
         </div>

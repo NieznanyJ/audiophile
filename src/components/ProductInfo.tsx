@@ -13,14 +13,45 @@ export type CartItem = {
     quantity: number;
 };
 
+export type ImageType = {
+    mobile: {
+        categoryImg: string;
+        gallery: {
+            first: string;
+            second: string;
+            third: string;
+        };
+        productImg: string;
+    };
+    tablet: {
+        categoryImg: string;
+        gallery: {
+            first: string;
+            second: string;
+            third: string;
+        };
+        productImg: string;
+    };
+    desktop: {
+        categoryImg: string;
+        gallery: {
+            first: string;
+            second: string;
+            third: string;
+        };
+        productImg: string;
+    };
+};
+
 function ProductInfo({ product }: { product: DataType }) {
     const [quantity, setQuantity] = useState<number>(1);
+    
 
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         setSearchParams({ quantity: quantity.toString() });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [quantity]);
 
     useEffect(() => {
@@ -29,7 +60,7 @@ function ProductInfo({ product }: { product: DataType }) {
         if (quantityParam) {
             setQuantity(parseInt(quantityParam));
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleQuantity = (mode: string) => {
@@ -44,20 +75,31 @@ function ProductInfo({ product }: { product: DataType }) {
         }
     };
 
-    const { cartItems, setCartItems } = useContext<CartContextType>(CartContext);
-    const [imageSrc, setImageSrc] = useState<string>("");
+    const { cartItems, setCartItems } =
+        useContext<CartContextType>(CartContext);
+    const [imageSrc, setImageSrc] = useState<ImageType | null>(null);
+
+    function loadImages() {
+        import("../components/modules/images.js").then(
+            ({ IMAGES: imageSrcs }) => {
+                if (product.name.includes("XX99 Mark I ")) {
+                    setImageSrc(imageSrcs.xx99M1);
+                } else if (product.name.includes("XX99 Mark II")) {
+                    setImageSrc(imageSrcs.xx99m2);
+                } else if (product.name.includes("XX59")) {
+                    setImageSrc(imageSrcs.xx59);
+                } else if (product.name.includes("ZX9")) {
+                    setImageSrc(imageSrcs.zx9);
+                } else if (product.name.includes("ZX7")) {
+                    setImageSrc(imageSrcs.zx7);
+                } else if (product.name.includes("YX1")) {
+                    setImageSrc(imageSrcs.yx1);
+                }
+            }
+        );
+    }
 
     useEffect(() => {
-        const loadImages = async () => {
-            try {
-                const module = await import(`.${product.image.mobile}`);
-                setImageSrc(module.default);
-            } catch (error) {
-                console.error("Error loading image:", error);
-                setImageSrc("");
-            }
-        };
-
         loadImages();
     }, [product]);
 
@@ -104,7 +146,13 @@ function ProductInfo({ product }: { product: DataType }) {
 
     return (
         <div className="product-info-container">
-            {imageSrc && <img src={imageSrc} alt={product.name} />}
+            {imageSrc && (
+                <img
+                    loading="lazy"
+                    src={imageSrc.desktop.productImg}
+                    alt={product.name}
+                />
+            )}
 
             <div className="product-info">
                 {product.new && <span className="overline">new product</span>}

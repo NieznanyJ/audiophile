@@ -47,10 +47,13 @@
   .product-info-container {
     flex-direction: row;
     gap: 1em;
+    justify-content: space-between;
+    width: 100%;
   }
   .product-info-container img {
     width: 50%;
     height: 100%;
+    max-height: 475px;
     margin: 0;
   }
   .product-info-container .product-info {
@@ -227,6 +230,8 @@
 .product-image-board img {
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
   width: 100%;
   border-radius: 10px;
 }

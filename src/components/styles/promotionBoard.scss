@@ -6,7 +6,7 @@
     padding: 1em;
 }
 
-.board{
+.board {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -15,15 +15,20 @@
     text-align: center;
     padding: 1em;
     border-radius: 10px;
+    max-width: 1200px;
+
+    margin: auto;
 
     @media screen and (min-width: 1440px) {
         max-width: 1200px;
         margin: auto;
-        
+
     }
 
+    @media screen and (min-width: 768) {}
 
-    &:first-child{
+
+    &:first-child {
         background-color: var(--main-orange);
         background-image: url("src/assets/home/desktop/pattern-circles.svg");
         background-position: center center;
@@ -31,9 +36,9 @@
         padding-bottom: 3em;
         padding-top: 3em;
         gap: 5em !important;
-        
 
-        div{
+
+        div {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -41,8 +46,8 @@
             gap: 1em;
             margin-top: 1em;
         }
-    
-        img{
+
+        img {
             width: 100%;
             max-width: 300px;
             height: 100%;
@@ -56,7 +61,8 @@
             padding-bottom: 0;
             background-position: 0 -130px;
             background-repeat: no-repeat;
-            div{
+
+            div {
                 width: 400px;
                 max-width: 50%;
                 text-align: center;
@@ -64,11 +70,12 @@
                 gap: 2em;
                 margin-bottom: 2em;
             }
-            img{
+
+            img {
                 height: 100%;
                 object-position: 0 10px;
             }
-            
+
         }
 
         @media screen and (min-width: 1440px) {
@@ -78,31 +85,33 @@
             height: auto;
             background-position: -50px;
             background-size: 70%;
-            
-            div{
+
+            div {
                 max-width: 50%;
                 text-align: left;
                 align-items: flex-start;
             }
-            img{
+
+            img {
                 height: 100%;
             }
-            
+
         }
     }
 
-    &:nth-child(2){
+    &:nth-child(2) {
         position: relative;
         padding: 0;
         color: var(--black);
-        
-        img{
+
+        img {
             width: 100%;
             max-width: 100%;
             object-fit: cover;
             border-radius: 10px;
         }
-        div{
+
+        div {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -116,12 +125,12 @@
 
 
 
-            button{
+            button {
                 background-color: transparent;
                 border: 1px solid var(--black);
                 color: var(--black);
 
-                &:hover{
+                &:hover {
                     background-color: var(--black);
                     color: var(--white);
                     transition: all .3s ease;
@@ -130,33 +139,34 @@
         }
 
         @media screen and (min-width: 768px) {
-            div{
+            div {
                 left: 25px;
-                
+
             }
-            
+
         }
 
         @media screen and (min-width: 1440px) {
-            div{
+            div {
                 align-items: flex-start;
                 left: 270px;
             }
-            
+
         }
 
-        
+
     }
 
-    &:last-child{
+    &:last-child {
         padding: 0;
-        img{
+
+        img {
             width: 100%;
             object-fit: cover;
             border-radius: 10px;
         }
 
-        div{
+        div {
             width: 100%;
             border-radius: 10px;
             margin-top: 1em;
@@ -174,17 +184,18 @@
             align-items: stretch;
             justify-content: space-between;
             gap: 1em;
-            img{
+
+            img {
                 object-fit: cover;
                 width: 50%;
                 height: auto;
             }
 
-            div{
+            div {
                 height: auto;
                 margin: 0;
             }
-            
+
         }
 
         @media screen and (min-width: 1440px) {
@@ -192,26 +203,26 @@
             align-items: stretch;
             justify-content: space-between;
             gap: 1em;
-            img{
+
+            img {
                 object-fit: cover;
                 width: 50%;
                 height: auto;
             }
 
-            div{
+            div {
                 height: auto;
                 margin: 0;
                 width: 50%;
             }
-            
+
         }
 
-       
+
 
     }
 
-    
 
-    
+
+
 }
-

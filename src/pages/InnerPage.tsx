@@ -1,4 +1,4 @@
-import {DataType} from "../components/dataType";
+import { DataType } from "../components/dataType";
 import ShopItem from "../components/ShopItem";
 import "../components/styles/innerPage.css";
 import CategoryListTest from "../components/CategoryListTest";
@@ -22,7 +22,7 @@ function InnerPage({ data, category }: { data: DataType[]; category: string }) {
         ? "earphones"
         : null;
 
-    const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+    const [, setScreenWidth] = useState<number>(window.innerWidth);
 
     useEffect(() => {
         const handleResize = () => {
@@ -45,14 +45,14 @@ function InnerPage({ data, category }: { data: DataType[]; category: string }) {
                         return item.slug.includes(category) ? (
                             <ShopItem
                                 key={index}
-                                img={
+                                /* img={
                                     screenWidth < 768 && screenWidth < 1440
                                         ? item.image.mobile
                                         : screenWidth >= 768 &&
                                           screenWidth < 1440
                                         ? item.image.tablet
                                         : item.image.desktop
-                                }
+                                } */
                                 name={item.name}
                                 description={item.description}
                             />
