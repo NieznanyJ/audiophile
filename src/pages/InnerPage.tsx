@@ -1,5 +1,4 @@
 import { DataType } from "../components/dataType";
-import ShopItem from "../components/ShopItem";
 import "../components/styles/innerPage.css";
 import CategoryListTest from "../components/CategoryListTest";
 import Category from "../components/Category";
@@ -8,11 +7,14 @@ import speakersThumbnail from "../assets/shared/desktop/image-category-thumbnail
 import earphonesThumbnail from "../assets/shared/desktop/image-category-thumbnail-earphones.png";
 import { useMatch } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { lazy, Suspense } from "react";
+import Loading from "../components/Loading";
+export const ShopItem = lazy(() => import("../components/ShopItem"));
 
 function InnerPage({ data, category }: { data: DataType[]; category: string }) {
-    const matchHeadphones = useMatch("/headphones");
-    const matchSpeakers = useMatch("/speakers");
-    const matchEarphones = useMatch("/earphones");
+    const matchHeadphones = useMatch("/audiophile/headphones");
+    const matchSpeakers = useMatch("/audiophile/speakers");
+    const matchEarphones = useMatch("/audiophile/earphones");
 
     const title = matchHeadphones
         ? "headphones"
@@ -43,19 +45,13 @@ function InnerPage({ data, category }: { data: DataType[]; category: string }) {
                 {data &&
                     data.map((item: DataType, index: number) => {
                         return item.slug.includes(category) ? (
-                            <ShopItem
-                                key={index}
-                                /* img={
-                                    screenWidth < 768 && screenWidth < 1440
-                                        ? item.image.mobile
-                                        : screenWidth >= 768 &&
-                                          screenWidth < 1440
-                                        ? item.image.tablet
-                                        : item.image.desktop
-                                } */
-                                name={item.name}
-                                description={item.description}
-                            />
+                            <Suspense fallback={<Loading />}>
+                                <ShopItem
+                                    key={index}
+                                    name={item.name}
+                                    description={item.description}
+                                />
+                            </Suspense>
                         ) : null;
                     })}
                 <CategoryListTest mobile={false}>

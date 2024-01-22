@@ -35,6 +35,26 @@
     
 }
 
+@media screen and (min-width: 1440px) {
+    .app {
+        display: grid;
+        grid-template-columns: 1fr 1440px 1fr;
+    }
+
+    .app > *{
+        grid-column: 2/3;
+    }
+
+    .app > .navbar, .app > .home, .app > .footer, .app > .inner-page-title {
+        grid-column: 1/4;
+    }
+
+
+
+    
+    
+}
+
 
 
 h1 {
@@ -173,6 +193,21 @@ body {
     fill: var(--white);
 }
 
+
+.loading{
+    animation: loadingAnimation 1s infinite linear;
+}
+
+@keyframes loadingAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    
+}
+
 /*------------------- Color scheme settings  -------------------*/
 
 @media (prefers-color-scheme: light) {
@@ -277,3 +312,5 @@ body {
         color: var(--white) !important;
     }
 }
+
+

@@ -6,8 +6,15 @@ footer {
   justify-content: center;
   gap: 2em;
   padding: 2em;
+  padding-top: 0;
   position: relative;
   color: var(--white);
+}
+footer .footer-wrapper {
+  position: relative;
+  max-width: 1440px;
+  margin: auto;
+  padding-top: 2em;
 }
 @media screen and (min-width: 768px) {
   footer {
@@ -19,8 +26,10 @@ footer {
     align-items: flex-start;
     position: relative;
     padding: 3em;
-    padding-left: 18.5%;
-    padding-right: 18.5%;
+    padding-top: 0;
+  }
+  footer .footer-wrapper {
+    padding-top: 3em;
   }
   footer div {
     padding: 0;
@@ -29,7 +38,7 @@ footer {
     text-align: left;
   }
 }
-footer::before {
+footer .footer-wrapper::before {
   content: "";
   background-color: var(--main-orange);
   width: 20%;

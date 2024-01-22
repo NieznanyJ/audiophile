@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { DataType } from "./dataType";
 
-
-
 function ProductImgBoard({ product }: { product: DataType }) {
-    const [imageSrcs, setImageSrcs] = useState<string[] | null>(null);
+    const [imageSrcs, setImageSrcs] = useState<Array<string> | null>(null);
     const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
 
     function loadImages() {
-        import("../components/modules/images.js").then(
-            ({ IMAGES: imageSrcs }) => {
+        import("../components/modules/poroductGallery.js").then(
+            ({ PRODUCT_GALLERY: imageSrcs }) => {
                 if (product.name.includes("XX99 Mark I ")) {
                     screenWidth < 768 && screenWidth < 1440
                         ? setImageSrcs(imageSrcs.xx99M1.mobile.gallery)
@@ -51,9 +49,11 @@ function ProductImgBoard({ product }: { product: DataType }) {
         );
         console.log(imageSrcs);
     }
+    loadImages();
 
     useEffect(() => {
         loadImages();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [product, screenWidth]);
 
     useEffect(() => {
@@ -69,10 +69,17 @@ function ProductImgBoard({ product }: { product: DataType }) {
     }, []);
     return (
         <div className="product-image-board">
-            {imageSrcs.map((src, index) => (
-                console.log(src),
-                <img key={index} src={src} alt={product.name} />
-            ))}
+            {imageSrcs &&
+                imageSrcs.map((src, index) => {
+                    return (
+                        <img
+                            src={src}
+                            alt={product.name}
+                            key={index}
+                            className="product-image"
+                        />
+                    );
+                })}
         </div>
     );
 }

@@ -2,6 +2,7 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import QuantityChanger from "./QuantityChanger";
 import { CartContext } from "../App";
 import { CartContextType } from "../App";
+import {loadImages} from "./modules/images";
 
 export type CartItemType = {
     id: number;
@@ -35,24 +36,18 @@ function CartItem({
     formatPrice();
 
     useEffect(() => {
-        const loadImages = async () => {
-            try {
-                const module = await import(`.${item.image}`);
-                setImageSrc(module.default);
-            } catch (error) {
-                console.error("Error loading image:", error);
-                setImageSrc("");
-            }
-        };
-
-        loadImages();
+        
+        setImageSrc(loadImages(item).desktop.productImg);
     }, [item]);
+
+    
 
     useMemo(() => {
         setFormattedPrice(formatPrice());
         setQuantity(item.quantity);
         console.log("formattedPrice", formattedPrice);
         console.log("quantity", quantity);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cartItems]);
 
     function updateQuantity(itemId, newQuantity) {

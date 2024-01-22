@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import arrow from "../assets/shared/desktop/icon-arrow-right.svg";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Category({
     categoryImg,
@@ -14,9 +14,9 @@ function Category({
     setShowMobileNav?: Dispatch<boolean>;
 }) {
     return (
-        <NavLink
+        <Link
             onClick={() => setShowMobileNav(false)}
-            to={categoryLink}
+            to={`/audiophile${categoryLink}`}
             className="category-link"
         >
             <div className="category">
@@ -36,7 +36,7 @@ function Category({
                 <div className="category-shadow"></div>
             </div>
             {/*  */}
-        </NavLink>
+        </Link>
     );
 }
 

@@ -1,32 +1,27 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {DataType} from "../components/dataType";
+import { DataType } from "../components/dataType";
+import { getOther } from "../components/modules/otherProducts.js";
 
 function OtherProductsList({ product }: { product: DataType }) {
-    console.log(product);
 
     const navigate = useNavigate();
 
     type OtherType = {
         name: string;
-        slug: string;
+        category: string;
         image: {
             mobile: string;
             tablet: string;
             desktop: string;
         };
-        category: string;
     };
 
-    type Other = {
-        src: string;
-        name: string;
-        category: string;
-    };
 
-    const [imageSrcs, setImageSrcs] = useState<Other[]>([]);
-
+    const [others, setOthers] = useState<Array<OtherType>>([]);
     const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+
+    
 
     useEffect(() => {
         const handleResize = () => {
@@ -35,59 +30,44 @@ function OtherProductsList({ product }: { product: DataType }) {
 
         window.addEventListener("resize", handleResize);
 
+        setOthers(getOther(product));
+        console.log(others);
+
         return () => {
             window.removeEventListener("resize", handleResize);
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    useEffect(() => {
-        const loadImages = async () => {
-            const srcs = await Promise.all(
-                Object.values(product.others).map(async (item: OtherType) => {
-                    try {
-                        let module;
-                        if (screenWidth < 768 && screenWidth < 1440) {
-                            module = await import(`.${item.image.desktop}`);
-                        } else if (screenWidth >= 768 && screenWidth < 1440) {
-                            module = await import(`.${item.image.tablet}`);
-                        } else if (screenWidth >= 1440) {
-                            module = await import(`.${item.image.desktop}`);
-                        }
-
-                        return {
-                            src: module.default,
-                            name: item.name,
-                            category: item.category,
-                        };
-                    } catch (error) {
-                        console.error("Error loading image:", error);
-                        return null;
-                    }
-                })
-            );
-
-            setImageSrcs(srcs.filter((item) => item.src !== null));
-        };
-
-        loadImages();
-    }, [product, screenWidth]);
+    useEffect(() => {}, [product, screenWidth]);
 
     return (
         <>
             <h4>You may also like</h4>
             <ul className="other-list product-list">
-                {imageSrcs.map((item, index) => {
-                    if (item.src !== null) {
+                {others.map((other: OtherType, index: number) => {
+                    if (other !== null) {
                         return (
                             <li key={index}>
                                 <div key={index} className="other">
-                                    <img src={item.src} alt={item.name} />
-                                    <h5>{item.name}</h5>
+                                    <img
+                                        src={
+                                            screenWidth < 768 &&
+                                            screenWidth < 1440
+                                                ? other.image.mobile
+                                                : screenWidth >= 768 &&
+                                                  screenWidth < 1440
+                                                ? other.image.tablet
+                                                : other.image.desktop
+                                        }
+                                        alt={other.name}
+                                    />
+                                    <h5>{other.name}</h5>
                                     <button
                                         className="btn"
                                         onClick={() => {
                                             navigate(
-                                                `/${item.category}/${item.name}`
+                                                `/audiophile/${other.category}/${other.name}`
                                             );
                                         }}
                                     >

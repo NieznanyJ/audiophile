@@ -10,7 +10,7 @@ import PromotionBoard from "../components/PromotionBoard";
 function Home() {
 
     return (
-        <section>
+        <section className="home" >
             <Hero />
             
 

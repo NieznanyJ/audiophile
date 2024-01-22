@@ -14,43 +14,70 @@ function Navbar() {
         };
     };
 
-    const {cartItems, showCart, setShowCart} = useContext(CartContext);
-
+    const { cartItems, showCart, setShowCart } = useContext(CartContext);
 
     return (
         <nav className="navbar">
-            <div className="navbar-logo">
-                <NavLink className="nav-link" to="/" end style={style}>
-                    <img className="logo" src={logo} alt="logo" />
-                </NavLink>
-            </div>
-            <ul className="navbar-links">
-                <li>
-                    <NavLink className="nav-link" to="/" end style={style}>
-                        Home
+            <div className="navbar-wrapper">
+                <div className="navbar-logo">
+                    <NavLink className="nav-link" to="/audiophile" end style={style}>
+                        <img className="logo" src={logo} alt="logo" />
                     </NavLink>
-                </li>
-                <li>
-                    <NavLink className="nav-link" to="headphones" style={style}>
-                        HEADPHONES
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink className="nav-link" to="speakers" style={style}>
-                        SPEAKERS
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink className="nav-link" to="earphones" style={style}>
-                        EARPHONES
-                    </NavLink>
-                </li>
-            </ul>
+                </div>
+                <ul className="navbar-links">
+                    <li>
+                        <NavLink
+                            className="nav-link"
+                            to="/audiophile"
+                            end
+                            style={style}
+                        >
+                            Home
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            className="nav-link"
+                            to="audiophile/headphones"
+                            style={style}
+                        >
+                            HEADPHONES
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            className="nav-link"
+                            to="audiophile/speakers"
+                            style={style}
+                        >
+                            SPEAKERS
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            className="nav-link"
+                            to="audiophile/earphones"
+                            style={style}
+                        >
+                            EARPHONES
+                        </NavLink>
+                    </li>
+                </ul>
 
-            <div className="navbar-cart" onClick={() => {setShowCart(!showCart)}}>
-                    {cartItems.length > 0 && <span className="cart-indicator" >{cartItems.length}</span>}
+                <div
+                    className="navbar-cart"
+                    onClick={() => {
+                        setShowCart(!showCart);
+                    }}
+                >
+                    {cartItems.length > 0 && (
+                        <span className="cart-indicator">
+                            {cartItems.length}
+                        </span>
+                    )}
                     <img className="cart-icon" src={cart} alt="cart" />
                 </div>
+            </div>
         </nav>
     );
 }

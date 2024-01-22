@@ -87,9 +87,9 @@ function App() {
 
                         <Cart />
                         <Routes>
-                            <Route path="/" element={<Home />} />
+                            <Route path="/audiophile" element={<Home />} />
                             <Route
-                                path="/headphones"
+                                path="/audiophile/headphones"
                                 element={
                                     <InnerPage
                                         data={data}
@@ -98,23 +98,23 @@ function App() {
                                 }
                             />
                             <Route
-                                path="/headphones/:name"
+                                path="/audiophile/headphones/:name"
                                 element={<ProductPage data={data} />}
                             />
 
                             <Route
-                                path="/speakers"
+                                path="/audiophile/speakers"
                                 element={
                                     <InnerPage data={data} category="speaker" />
                                 }
                             />
                             <Route
-                                path="/speakers/:name"
+                                path="/audiophile/speakers/:name"
                                 element={<ProductPage data={data} />}
                             />
 
                             <Route
-                                path="/earphones"
+                                path="/audiophile/earphones"
                                 element={
                                     <InnerPage
                                         data={data}
@@ -123,7 +123,7 @@ function App() {
                                 }
                             />
                             <Route
-                                path="/earphones/:name"
+                                path="/audiophile/earphones/:name"
                                 element={<ProductPage data={data} />}
                             />
                             <Route path="/checkout" element={<Checkout />} />

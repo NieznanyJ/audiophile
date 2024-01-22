@@ -30,11 +30,11 @@ function Summary() {
     function navigateToItem(item: CartItemType): string {
         let path = "";
         if (item.name.includes("Earphones")) {
-            path = `/earphones/${item.name}?quantity=${item.quantity}`;
+            path = `/audiophile/earphones/${item.name}?quantity=${item.quantity}`;
         } else if (item.name.includes("Headphones")) {
-            path = `/headphones/${item.name}?quantity=${item.quantity}`;
+            path = `/audiophile/headphones/${item.name}?quantity=${item.quantity}`;
         } else if (item.name.includes("Speaker")) {
-            path = `/speakers/${item.name}?quantity=${item.quantity}`;
+            path = `/audiophile/speakers/${item.name}?quantity=${item.quantity}`;
         }
         navigate(path);
         return path;

@@ -44,7 +44,7 @@ function PromotionBoard() {
                         Upgrade to premium speakers that are phenomenally built
                         to deliver truly remarkable sound.
                     </p>
-                    <Link to='/speakers/ZX9%20Speaker'><button className="btn secondary-btn">See Product</button></Link>
+                    <Link to='/audiophile/speakers/ZX9%20Speaker'><button className="btn secondary-btn">See Product</button></Link>
                 </div>
             </div>
             <div className="board">
@@ -58,7 +58,7 @@ function PromotionBoard() {
                 <div>
                     <h3>ZX7 SPEAKER</h3>
                     
-                    <Link to='/speakers/ZX7%20Speaker?quantity=1'><button className="btn secondary-btn">See Product</button></Link>
+                    <Link to='/audiophile/speakers/ZX7%20Speaker?quantity=1'><button className="btn secondary-btn">See Product</button></Link>
                 </div>
             </div>
             <div className="board">
@@ -71,7 +71,7 @@ function PromotionBoard() {
                 } alt="YX1 Earphones" />
                 <div>
                     <h3>YX1 EARPHONES</h3>
-                    <Link to='/earphones/YX1%20Wireless%20Earphones'><button className="btn secondary-btn">See Product</button></Link>
+                    <Link to='/audiophile/earphones/YX1%20Wireless%20Earphones'><button className="btn secondary-btn">See Product</button></Link>
                 </div>
             </div>
         </section>

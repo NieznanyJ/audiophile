@@ -1,20 +1,26 @@
-.navbar {
+.navbar, .navbar-wrapper {
   position: sticky;
   top: 0;
   background-color: var(--main-dark);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   padding: 2em 2em;
   z-index: 100;
   max-height: var(--navbar-height);
 }
-@media screen and (min-width: 1440px) {
-  .navbar {
-    padding-left: 18.5%;
-    padding-right: 18.5%;
+@media screen and (max-width: 768px) {
+  .navbar, .navbar-wrapper {
+    justify-content: space-between;
   }
+}
+.navbar-wrapper {
+  width: 100%;
+  padding: 0;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
 }
 
 .navbar::after {
@@ -30,7 +36,7 @@
 }
 @media screen and (min-width: 1440px) {
   .navbar::after {
-    width: 63%;
+    width: 75%;
   }
 }
 

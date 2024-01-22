@@ -25,7 +25,7 @@ function ProductPage({ data }: { data: Array<DataType> }) {
             <main className="product-page">
                 <span
                     className="body go-back"
-                    onClick={() => navigate(`/${product.category}`)}
+                    onClick={() => navigate(`/audiophile/${product.category}`)}
                 >
                     go back
                 </span>

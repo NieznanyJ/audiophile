@@ -63,9 +63,9 @@
 
     @media screen and (min-width: 1440px) {
         flex-direction: row;
-        max-width: 1200px;
+        max-width: 1440px;
         margin: auto;
-
+        gap: 3em;
 
 
         &:nth-child(2n) {
