@@ -1,7 +1,0 @@
-import{u as a,r as l,j as i,_ as x}from"./index-YfDQxCsX.js";function h({name:e,description:c}){const r=a(),[o,t]=l.useState(null),[n,u]=l.useState(window.innerWidth);l.useEffect(()=>{const s=()=>{u(window.innerWidth)};return window.addEventListener("resize",s),()=>{window.removeEventListener("resize",s)}},[]);function d(){x(()=>import("./index-YfDQxCsX.js").then(s=>s.a4),__vite__mapDeps([0,1])).then(({IMAGES:s})=>{console.log(e),e.includes("XX99 Mark I ")?t(s.xx99M1):e.includes("XX99 Mark II")?t(s.xx99m2):e.includes("XX59")?t(s.xx59):e.includes("ZX9")?t(s.zx9):e.includes("ZX7")?t(s.zx7):e.includes("YX1")&&t(s.yx1)})}return l.useEffect(()=>{d(),console.log(o)},[n]),l.useEffect(()=>{d()},[e]),i.jsxs("div",{className:"shop-item",children:[o&&i.jsx("img",{loading:"lazy",className:"item-img",src:n<768&&n<1440?o.mobile.productImg:n>=768&&n<1440?o.tablet.productImg:o.desktop.productImg,alt:e}),i.jsxs("div",{children:[i.jsx("h4",{children:e}),i.jsx("p",{className:"body",children:c}),i.jsx("button",{className:"btn",onClick:()=>{r(e)},children:"See Product"})]})]})}export{h as default};
-function __vite__mapDeps(indexes) {
-  if (!__vite__mapDeps.viteFileDeps) {
-    __vite__mapDeps.viteFileDeps = ["assets/index-YfDQxCsX.js","assets/index-ydHmHMrE.css"]
-  }
-  return indexes.map((i) => __vite__mapDeps.viteFileDeps[i])
-}
